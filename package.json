@@ -11,9 +11,11 @@
     "babel-core": "^6.10.4",
     "babel-eslint": "^6.1.0",
     "babel-loader": "^6.2.4",
+    "babel-plugin-__coverage__": "^11.0.0",
     "babel-preset-es2015-webpack": "^6.4.1",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
+    "chai": "^3.5.0",
     "eslint": "^3.0.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-loader": "^1.4.1",
@@ -22,7 +24,17 @@
     "eslint-plugin-react": "^5.2.2",
     "ghooks": "^1.3.2",
     "html-webpack-plugin": "^2.22.0",
+    "istanbul": "^0.4.4",
+    "karma": "^1.1.1",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-coverage": "^1.1.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-mocha": "^1.1.1",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.5.3",
     "npm-run-all": "^2.3.0",
+    "react-addons-test-utils": "^15.2.1",
     "rimraf": "^2.5.3",
     "webpack": "^2.1.0-beta.15",
     "webpack-dev-server": "^2.1.0-beta.0",
@@ -34,6 +46,9 @@
     }
   },
   "scripts": {
+    "check-coverage": "istanbul check-coverage --statements 0 --branches 0 --functions 0 --lines 0",
+    "test": "karma start",
+    "test:watch": "npm test -- --auto-watch --no-single-run",
     "lint": "eslint src",
     "build": "webpack --env.dev",
     "build:prod": "webpack --env.prod",
@@ -42,7 +57,7 @@
     "clean": "rimraf dist",
     "start": "webpack-dev-server --env.dev --content-base dist",
     "prestart": "npm run clean",
-    "validate": "npm-run-all --parallel validate-webpack:* lint",
+    "validate": "npm-run-all --parallel validate-webpack:* lint test --serial check-coverage",
     "validate-webpack:dev": "webpack-validator webpack.config.js --env.dev",
     "validate-webpack:prod": "webpack-validator webpack.config.js --env.prod"
   },
@@ -50,7 +65,7 @@
     "type": "git",
     "url": "git+https://github.com/achristie/reactstarter.git"
   },
-  "author": "",
+  "author": "Andrew",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/achristie/reactstarter/issues"

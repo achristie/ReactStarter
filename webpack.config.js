@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = env => {
   const addPlugin = (add, plugin) => add ? plugin : undefined;
   const ifProd = plugin => addPlugin(env.prod, plugin);
+  const ifNotTest = plugin => addPlugin(!env.test, plugin);
 
   return {
     entry: {
@@ -45,9 +46,9 @@ module.exports = env => {
       new HtmlWebpackPlugin({
         template: './index.html',
       }),
-      new webpack.optimize.CommonsChunkPlugin({
+      ifNotTest(new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor', //must fix for tests!
-      })
+      }))
     ].filter(i => !!i) //remove undefined
   }
 }

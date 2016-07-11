@@ -1,4 +1,11 @@
 {
-  "presets": ["es2015-webpack", "stage-0", "react"]
+  "presets": ["es2015-webpack", "stage-0", "react"],
+  "env": {
+    "test": {
+      "plugins": [
+        ["__coverage__", { "ignore": "*.spec.*" } ]
+      ]
+    }
+  }
   //"plugins": ["react-hot-loader/babel"]
 }

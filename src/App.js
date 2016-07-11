@@ -1,5 +1,6 @@
 import React from 'react';
+import Basic from './components/basic/Basic';
 
-const App = () => <h2> Hello </h2>;
+const App = () => <Basic />;
 
 export default App;
