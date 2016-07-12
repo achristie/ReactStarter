@@ -13,7 +13,7 @@ module.exports = env => {
       vendor: ['react', 'react-dom'],
     },
     output: {
-      filename: 'bundle.[name].[chunkhash].js',
+      filename: 'bundle.[name].[hash].js',
       path: resolve(__dirname, 'dist'),
       pathinfo: !env.prod,
     },
@@ -52,13 +52,3 @@ module.exports = env => {
     ].filter(i => !!i) //remove undefined
   }
 }
-
-
-
-//HMR
-//Commons Chunk
-//Router Chunking
-//Prod and Dev
-//Polyfill
-//Tree shaking
-
